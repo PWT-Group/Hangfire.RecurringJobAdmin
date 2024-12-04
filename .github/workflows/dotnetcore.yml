@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 2.2.108
+          dotnet-version: 8.0.x
       - name: Add GitHub package source
         run: dotnet nuget add source https://nuget.pkg.github.com/PWT-Group/index.json --name "PWT GitHub" --username FrederikStaer --password ${{ secrets.PACKAGE_TOKEN }} --store-password-in-clear-text
       - name: Get version number
