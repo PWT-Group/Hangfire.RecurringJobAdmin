@@ -1,0 +1,16 @@
+name: 'Generate version number'
+description: 'Determine next Gitflow version number based on branch or latest tag'
+outputs:
+  assemblyVersion:
+    description: 'Next assembly version, eg. 1.0.0.1000'
+    value: ${{ steps.version.outputs.assemblyVersion }}
+  packageVersion:
+    description: 'Next release version, including any pre release suffix (alpha/beta), eg. 1.0.0-alpha1000'
+    value: ${{ steps.version.outputs.packageVersion }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Generate version
+      id: version
+      shell: powershell
+      run: ${{github.action_path}}/gitflowversion.ps1
