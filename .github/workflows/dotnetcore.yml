@@ -22,13 +22,13 @@ jobs:
           dotnet-version: 8.0.x
       - name: Add GitHub package source
         run: dotnet nuget add source https://nuget.pkg.github.com/PWT-Group/index.json --name "PWT GitHub" --username FrederikStaer --password ${{ secrets.PACKAGE_TOKEN }} --store-password-in-clear-text
-      - name: Get version number
-        uses: ./.github/actions/gitflow-version
-        id: version
-      - name: Display version
-        run: |
-          Write-Host "packageVersion: ${{ steps.version.outputs.packageVersion }}"
-          Write-Host "assemblyVersion: ${{ steps.version.outputs.assemblyVersion }}"
+      #- name: Get version number
+      #  uses: ./.github/actions/gitflow-version
+      #  id: version
+      #- name: Display version
+      #  run: |
+      #    Write-Host "packageVersion: ${{ steps.version.outputs.packageVersion }}"
+      #    Write-Host "assemblyVersion: ${{ steps.version.outputs.assemblyVersion }}"
       - name: Build solution
         run: dotnet build Hangfire.RecurringJobAdmin.sln -c Release /property:Version=${{steps.version.outputs.assemblyVersion}}
       - name: Create NuGet packages
